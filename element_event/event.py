@@ -111,7 +111,7 @@ class EventCode(dj.Imported):
     -> EventType
     ---
     event_code                               : SMALLINT                    # number assigned to event
-    event_group=NULL                         : VARCHAR(32)                 # category or group associated with the event code
+    event_group=''                         : VARCHAR(32)                 # category or group associated with the event code
     event_comment=''                         : VARCHAR(1024)               # additional comments related to the event
     """
 
