@@ -93,15 +93,33 @@ class EventType(dj.Lookup):
     """Set of unique events present within a recording session
 
     Attributes:
-        event_type ( varchar(16) ): Unique event type.
+        event_type ( varchar(32) ): Unique event type.
         event_type_description ( varchar(256) ): Event type description.
     """
 
     definition = """
-    event_type                : varchar(16)
+    event_type                : varchar(32)   # short string identifier for a singular event type
     ---
-    event_type_description='' : varchar(256)
+    event_type_description='' : varchar(256)  # additional details for the event type
     """
+
+
+@schema  # type: ignore
+class EventCode(dj.Imported):
+    definition = """
+    # Add event codes as a subtype of event.EventType
+    -> EventType
+    ---
+    event_code                               : SMALLINT                    # number assigned to event
+    event_group=''                         : VARCHAR(32)                 # category or group associated with the event code
+    event_comment=''                         : VARCHAR(1024)               # additional comments related to the event
+    """
+
+    def make(self, key: dict[str, object]) -> None:
+        raise NotImplementedError(
+            "Add event codes by setting 'allow_direct_insert = True'"
+            " and manually inserting into 'EventCode'."
+        )
 
 
 @schema
