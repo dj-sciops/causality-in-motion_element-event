@@ -143,13 +143,13 @@ class Trial(dj.Imported):
         trial_stop_time (float): Seconds relative to recording stop
     """
 
-    definition = """  # Experimental trials
+    definition = """  # Trials administered during an experimental session
     -> event.BehaviorRecording
-    trial_id            : smallint # trial number (1-based indexing)
+    trial_id                                 : SMALLINT                    # trial number (sequential, 1-based indexing)
     ---
     -> [nullable] TrialType
-    trial_start_time    : float  # (second) relative to recording start
-    trial_stop_time     : float  # (second) relative to recording stop
+    trial_start_time=NULL                    : FLOAT                       # trial start time relative to recording start (seconds)
+    trial_stop_time=NULL                     : FLOAT                       # trial stop time relative to recording start (seconds)
     """
 
     class Attribute(dj.Part):
