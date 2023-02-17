@@ -213,6 +213,27 @@ class TrialEvent(dj.Imported):
         raise NotImplementedError("For `insert`, use `allow_direct_insert=True`")
 
 
+@schema
+class BehaviorTimeSeries(dj.Imported):
+    definition = """
+    -> event.BehaviorRecording
+    timeseries_name: varchar(16)  # e.g. GazeX, GazeY, CenterRY
+    """
+
+    class Trial(dj.Part):
+        definition = """
+        -> master
+        -> Trial
+        ---
+        sample_rate: float  # (Hz)     # sampling rate of the acquired data
+        behavior_timeseries: longblob  # array of device's acquired data
+        behavior_timestamps: longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording
+        """
+
+    def make(self, key):
+        pass
+
+
 # ---- HELPER Functions ----
 
 
