@@ -217,7 +217,9 @@ class TrialEvent(dj.Imported):
 class BehaviorTimeSeries(dj.Imported):
     definition = """
     -> event.BehaviorRecording
-    timeseries_name: varchar(16)  # e.g. GazeX, GazeY, CenterRY
+    timeseries_name             : varchar(32)  # e.g. GazeX, GazeY, CenterRY
+    ---
+    sample_rate=null            : float  # sampling rate of the acquired data
     """
 
     class Trial(dj.Part):
@@ -225,9 +227,8 @@ class BehaviorTimeSeries(dj.Imported):
         -> master
         -> Trial
         ---
-        sample_rate: float  # (Hz)     # sampling rate of the acquired data
-        behavior_timeseries: longblob  # array of device's acquired data
-        behavior_timestamps: longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording
+        behavior_timestamps     : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording  
+        behavior_timeseries     : longblob  # array of device's acquired data
         """
 
     def make(self, key):
