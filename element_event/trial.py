@@ -218,6 +218,8 @@ class BehaviorTimeSeries(dj.Imported):
     definition = """
     -> event.BehaviorRecording
     timeseries_name             : varchar(32)  # e.g. GazeX, GazeY, CenterRY
+    ---
+    sample_rate=null            : float  # sampling rate of the acquired data
     """
 
     class Trial(dj.Part):
@@ -225,6 +227,7 @@ class BehaviorTimeSeries(dj.Imported):
         -> master
         -> Trial
         ---
+        behavior_timestamps     : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording  
         behavior_timeseries     : longblob  # array of device's acquired data
         """
 
