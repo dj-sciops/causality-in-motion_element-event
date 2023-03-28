@@ -227,8 +227,8 @@ class BehaviorTimeSeries(dj.Imported):
         -> master
         -> Trial
         ---
-        behavior_timestamps     : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording  
-        behavior_timeseries     : longblob  # array of device's acquired data
+        behavior_timestamps=null     : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording  
+        behavior_timeseries          : longblob  # array of device's acquired data
         """
 
     def make(self, key):
