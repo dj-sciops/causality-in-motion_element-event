@@ -240,7 +240,7 @@ class TrialTimeStamps(dj.Imported):
     definition = """
     -> Trial
     ---
-    timestamps          : longblob  # array of timestamps for each trial 
+    trial_timestamps          : longblob  # array of timestamps for each trial, in second, relative to the start of the session
     """
     
     def make(self, key):
