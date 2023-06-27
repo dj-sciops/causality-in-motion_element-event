@@ -214,6 +214,18 @@ class TrialEvent(dj.Imported):
 
 
 @schema
+class TrialTimeStamps(dj.Imported):
+    definition = """
+    -> Trial
+    ---
+    trial_timestamps          : longblob  # array of timestamps for each trial, in second, relative to the start of the session
+    """
+    
+    def make(self, key):
+        pass
+        
+
+@schema
 class BehaviorTimeSeries(dj.Imported):
     definition = """
     -> event.BehaviorRecording
@@ -227,7 +239,6 @@ class BehaviorTimeSeries(dj.Imported):
         -> master
         -> Trial
         ---
-        behavior_timestamps=null     : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording  
         behavior_timeseries          : longblob  # array of device's acquired data
         """
 
@@ -242,6 +253,8 @@ def get_trialized_alignment_event_times(alignment_event_key, trial_restriction):
     """For the trials in trial_restriction, identify times WRT a given alignment_event.
 
     WRT = With respect to
+
+
 
     Args:
         alignment_event_key (dict): key including information from event.AlignmentEvent
