@@ -227,7 +227,6 @@ class BehaviorTimeSeries(dj.Imported):
         -> master
         -> Trial
         ---
-        behavior_timestamps=null     : longblob  # array of timestamps (in second) relative to the start of the BehaviorRecording  
         behavior_timeseries          : longblob  # array of device's acquired data
         """
 
