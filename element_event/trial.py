@@ -214,6 +214,18 @@ class TrialEvent(dj.Imported):
 
 
 @schema
+class TrialTimeStamps(dj.Imported):
+    definition = """
+    -> Trial
+    ---
+    trial_timestamps          : longblob  # array of timestamps for each trial, in second, relative to the start of the session
+    """
+    
+    def make(self, key):
+        pass
+        
+
+@schema
 class BehaviorTimeSeries(dj.Imported):
     definition = """
     -> event.BehaviorRecording
@@ -230,18 +242,6 @@ class BehaviorTimeSeries(dj.Imported):
         behavior_timeseries          : longblob  # array of device's acquired data
         """
 
-    def make(self, key):
-        pass
-
-
-@schema
-class TrialTimeStamps(dj.Imported):
-    definition = """
-    -> Trial
-    ---
-    trial_timestamps          : longblob  # array of timestamps for each trial, in second, relative to the start of the session
-    """
-    
     def make(self, key):
         pass
 
