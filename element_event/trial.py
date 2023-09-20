@@ -166,7 +166,7 @@ class Trial(dj.Imported):
         -> master
         attribute_name  : varchar(32)
         ---
-        attribute_value='': varchar(65000)
+        attribute_value='': varchar(16383)
         attribute_blob=null: longblob
         """
 
