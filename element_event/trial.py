@@ -158,7 +158,7 @@ class Trial(dj.Imported):
         Attributes:
             Trial (foreign key): Trial table primary key.
             attribute_name ( varchar(32) ): Name of trial attribute
-            attribute_value ( varchar(65000) ): Optional. Trial attribute value
+            attribute_value ( varchar(16383) ): Optional. Trial attribute value
             attribute_blob (longblob): Optional. Trial attribute numerical data
         """
 
